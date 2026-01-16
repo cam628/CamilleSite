@@ -1,11 +1,52 @@
 // app/page.tsx
+import Link from "next/link";
 import Header from "../components/Header";
 import TravelMap from "../components/TravelMap";
 
 export default function HomePage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Camille Fénéon",
+    jobTitle: "Guest Experience & Operations Specialist",
+    description:
+      "Guest Experience Specialist for luxury villas, boutique hotels and premium short-term rentals. Combining elegant hospitality codes with real-world operational skills.",
+    email: "cfeneon@gmail.com",
+    telephone: "+61412852387",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Paris",
+      addressCountry: "FR",
+    },
+    alumniOf: [
+      {
+        "@type": "EducationalOrganization",
+        name: "HEC Montréal",
+      },
+      {
+        "@type": "EducationalOrganization",
+        name: "University of Queensland",
+      },
+    ],
+    knowsLanguage: ["French", "English", "Spanish"],
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Guest Experience Specialist",
+      occupationLocation: {
+        "@type": "City",
+        name: "Paris",
+      },
+    },
+  };
+
   return (
-    <div id="top" className="min-h-screen">
-      <Header />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div id="top" className="min-h-screen">
+        <Header />
 
       <main className="overflow-hidden">
         {/* HERO SECTION - Modern & Dynamic */}
@@ -408,6 +449,26 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-    </div>
+
+      {/* FOOTER */}
+      <footer className="border-t border-stone-200 bg-white/50 py-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row">
+            <p className="text-xs font-light text-[#4a4a4a]">
+              © {new Date().getFullYear()} Camille Fénéon. All rights reserved.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-light text-[#4a4a4a]">
+              <Link href="/privacy-policy" className="hover:text-[#c9a961] transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms-of-service" className="hover:text-[#c9a961] transition-colors">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
+      </div>
+    </>
   );
 }
