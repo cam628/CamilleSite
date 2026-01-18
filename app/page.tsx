@@ -130,7 +130,7 @@ export default function HomePage() {
                   Contact Me
                 </a>
                 <a
-                  href="/Camille-Resume.pdf"
+                  href="/Camille_Feneon_Resume.pdf"
                   className="group rounded-sm border border-[#c9a961] bg-transparent px-6 py-3 text-xs font-light uppercase tracking-wider text-[#4a4a4a] backdrop-blur-sm transition-all duration-300 hover:bg-[#c9a961] hover:text-white"
                 >
                   Download CV
