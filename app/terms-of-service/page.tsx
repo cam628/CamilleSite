@@ -106,7 +106,7 @@ export default function TermsOfService() {
               <p className="mt-2">
                 <strong>Email:</strong> <a href="mailto:cfeneon@gmail.com" className="text-[#c9a961] hover:underline">cfeneon@gmail.com</a>
                 <br />
-                <strong>Phone:</strong> +61412852387 (WhatsApp / Signal) or +33752072618 (mobile, France)
+                <strong>Phone:</strong> +33752072618 (mobile, France)
               </p>
             </section>
           </div>

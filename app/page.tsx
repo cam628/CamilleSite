@@ -12,7 +12,7 @@ export default function HomePage() {
     description:
       "Guest Experience Specialist for luxury villas, boutique hotels and premium short-term rentals. Combining elegant hospitality codes with real-world operational skills.",
     email: "cfeneon@gmail.com",
-    telephone: "+61412852387",
+    telephone: "+33752072618",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Paris",
@@ -437,7 +437,7 @@ export default function HomePage() {
                   </p>
                   <p className="text-sm font-light text-[#4a4a4a]">
                     <span className="text-[#c9a961]">📱</span> Phone:{" "}
-                    <span className="font-medium text-[#2c2c2c]">+61412852387 (WHatsApp / Signal) +33752072618 (mobile, France)</span>
+                    <span className="font-medium text-[#2c2c2c]">+33752072618 (France)</span>
                   </p>
                   <p className="text-sm font-light text-[#4a4a4a]">
                     <span className="text-[#c9a961]">📍</span> Based in:{" "}
