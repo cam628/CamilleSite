@@ -3,9 +3,10 @@
 import type { Metadata } from "next";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Camille Fénéon – Guest Experience & Operations Specialist",
+  title: "Camille Fénéon",
   description:
     "Guest Experience Specialist for luxury villas, boutique hotels and premium short-term rentals. Combining elegant hospitality codes with real-world operational skills.",
   keywords: [
@@ -25,15 +26,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
+    alternateLocale: "fr_FR",
     url: "https://camille-feneon.com",
-    title: "Camille Fénéon – Guest Experience & Operations Specialist",
+    title: "Camille Fénéon",
     description:
       "Guest Experience Specialist for luxury villas, boutique hotels and premium short-term rentals. Combining elegant hospitality codes with real-world operational skills.",
     siteName: "Camille Fénéon",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Camille Fénéon – Guest Experience & Operations Specialist",
+    title: "Camille Fénéon",
     description:
       "Guest Experience Specialist for luxury villas, boutique hotels and premium short-term rentals.",
   },
@@ -63,7 +65,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

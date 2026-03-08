@@ -1,20 +1,19 @@
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "Privacy Policy – Camille Fénéon",
-  description: "Privacy Policy for Camille Fénéon's website",
-};
+import Link from "next/link";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function PrivacyPolicy() {
+  const { language, t } = useLanguage();
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#faf9f6] to-[#f5f3ef]">
       <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
         <div className="rounded-lg border border-stone-200 bg-white/80 p-8 shadow-sm backdrop-blur-sm lg:p-12">
           <h1 className="mb-8 text-4xl font-light text-[#2c2c2c] lg:text-5xl" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Privacy Policy
+            {t("privacy.title")}
           </h1>
           <div className="mb-6 text-sm text-[#4a4a4a]">
-            Last updated: {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+            {t("privacy.lastUpdated")} {new Date().toLocaleDateString(language === "fr" ? "fr-FR" : "en-US", { year: "numeric", month: "long", day: "numeric" })}
           </div>
 
           <div className="prose prose-sm max-w-none space-y-6 text-base font-light leading-relaxed text-[#4a4a4a]">
@@ -150,7 +149,7 @@ export default function PrivacyPolicy() {
 
           <div className="mt-12 border-t border-stone-200 pt-8">
             <Link href="/" className="text-sm font-light text-[#c9a961] hover:underline">
-              ← Back to Home
+              {t("terms.backToHome")}
             </Link>
           </div>
         </div>

@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#services", label: "Services" },
-  { href: "#travel", label: "Travel" },
-  { href: "#contact", label: "Contact" },
+  { href: "#about", key: "about" },
+  { href: "#experience", key: "experience" },
+  { href: "#services", key: "services" },
+  { href: "#travel", key: "travel" },
+  { href: "#contact", key: "contact" },
 ];
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => {
@@ -21,6 +23,10 @@ function Header() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "fr" : "en");
+  };
 
   return (
     <header
@@ -38,18 +44,29 @@ function Header() {
         >
           Camille Fénéon
         </Link>
-        <nav className="hidden gap-8 text-sm font-light tracking-wide md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-slate-600 transition-all duration-300 hover:text-[#c9a961] hover:tracking-wider relative group"
-            >
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#c9a961] transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center gap-6">
+          <nav className="hidden gap-8 text-sm font-light tracking-wide md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-slate-600 transition-all duration-300 hover:text-[#c9a961] hover:tracking-wider relative group"
+              >
+                {t(`nav.${item.key}`)}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#c9a961] transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
+          </nav>
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 rounded-sm border border-[#c9a961] bg-transparent px-4 py-2 text-xs font-light uppercase tracking-wider text-[#4a4a4a] transition-all duration-300 hover:bg-[#c9a961] hover:text-white"
+            aria-label="Toggle language"
+          >
+            <span className={language === "fr" ? "font-medium" : ""}>FR</span>
+            <span className="text-[#c9a961]">/</span>
+            <span className={language === "en" ? "font-medium" : ""}>EN</span>
+          </button>
+        </div>
       </div>
     </header>
   );

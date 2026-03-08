@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 type Place = {
   name: string;
@@ -12,16 +13,19 @@ type Place = {
   timeline?: string;
   link?: string;
   imageUrl?: string;
+  translationKey?: string;
 };
 
-const places: Place[] = [
+export default function TravelMap() {
+  const { t } = useLanguage();
+
+  const places: Place[] = [
   {
     name: "France",
     lat: 46.2276,
     lng: 2.2137,
     category: "origin",
-    description:
-      "Country of origin; formative years and education, building strong cultural fluency, discretion and social awareness.",
+    translationKey: "france",
   },
 
   {
@@ -30,8 +34,7 @@ const places: Place[] = [
     lng: -73.5673,
     category: "study",
     timeline: "2010–2014",
-    description:
-      "BBA at HEC Montréal (trilingual) with an IT specialisation.",
+    translationKey: "montrealStudy",
   },
 
   {
@@ -40,8 +43,7 @@ const places: Place[] = [
     lng: -73.5673,
     category: "work",
     timeline: "2010–2013",
-    description:
-      "Service industry work in bars and at the university.",
+    translationKey: "montrealWork",
   },
 
   {
@@ -50,8 +52,7 @@ const places: Place[] = [
     lng: -73.5673,
     category: "life",
     timeline: "2010–2011",
-    description:
-      "AIESEC member.",
+    translationKey: "montrealLife",
   },
 
   {
@@ -60,8 +61,7 @@ const places: Place[] = [
     lng: -79.3832,
     category: "study",
     timeline: "2009",
-    description:
-      "TOEFL preparation course focused on advanced academic and professional English.",
+    translationKey: "toronto",
   },
 
   {
@@ -70,8 +70,7 @@ const places: Place[] = [
     lng: -3.7038,
     category: "work",
     timeline: "2010 (2 months)",
-    description:
-      "Hospitality work in an Irish pub, covering bar service, food service and venue upkeep in a high-traffic environment.",
+    translationKey: "madrid",
   },
 
   {
@@ -80,8 +79,7 @@ const places: Place[] = [
     lng: -57.9536,
     category: "work",
     timeline: "2011 (2 months)",
-    description:
-      "Volunteer work with a non-profit organisation, providing administrative support and coordinating donation campaigns.",
+    translationKey: "laPlata",
   },
 
   {
@@ -90,8 +88,7 @@ const places: Place[] = [
     lng: -1.5616,
     category: "life",
     timeline: "2005 (1 month)",
-    description:
-      "Supported teachers in a school for children with physical and intellectual disabilities.",
+    translationKey: "burkina",
   },
 
   {
@@ -100,8 +97,7 @@ const places: Place[] = [
     lng: 153.0251,
     category: "study",
     timeline: "2014–2016",
-    description:
-      "Studied a Master in Information Technology at the University of Queensland.",
+    translationKey: "brisbane",
   },
 
   {
@@ -110,8 +106,7 @@ const places: Place[] = [
     lng: 153.0251,
     category: "project",
     timeline: "2016–2019",
-    description:
-      "Built and tested an early business venture, gaining hands-on experience in operations, execution and resilience.",
+    translationKey: "brisbaneEnt",
   },
 
   {
@@ -120,8 +115,7 @@ const places: Place[] = [
     lng: 153.507,
     category: "work",
     timeline: "2017–2025",
-    description:
-      "Founder and manager of Duck Distilling, producing and distributing whisky essences for the homebrew industry.",
+    translationKey: "mullumbimby",
   },
 
   {
@@ -130,8 +124,7 @@ const places: Place[] = [
     lng: 153.507,
     category: "life",
     timeline: "2019–2025",
-    description:
-      "Volunteer firefighter with the NSW Rural Fire Service; operational response to fires, floods, storms and road accidents, including training and equipment roles.",
+    translationKey: "mullumbimbyFire",
   },
 
   {
@@ -139,8 +132,7 @@ const places: Place[] = [
     lat: 39.8283,
     lng: -98.5795,
     category: "travel",
-    description:
-      "Travel across both coasts, observing varied hospitality standards and service cultures.",
+    translationKey: "usa",
   },
 
   {
@@ -148,7 +140,7 @@ const places: Place[] = [
     lat: 20.7099,
     lng: -89.0943,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "yucatan",
   },
 
   {
@@ -156,7 +148,7 @@ const places: Place[] = [
     lat: 17.1899,
     lng: -88.4976,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "belize",
   },
 
   {
@@ -164,7 +156,7 @@ const places: Place[] = [
     lat: 53.3498,
     lng: -6.2603,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "dublin",
   },
 
   {
@@ -172,7 +164,7 @@ const places: Place[] = [
     lat: 55.756,
     lng: -6.287,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "islay",
   },
 
   {
@@ -180,7 +172,7 @@ const places: Place[] = [
     lat: 50.0755,
     lng: 14.4378,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "prague",
   },
 
   {
@@ -188,7 +180,7 @@ const places: Place[] = [
     lat: 41.8719,
     lng: 12.5674,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "italy",
   },
 
   {
@@ -196,7 +188,7 @@ const places: Place[] = [
     lat: 39.0742,
     lng: 21.8243,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "greece",
   },
 
   {
@@ -204,8 +196,7 @@ const places: Place[] = [
     lat: 38.9067,
     lng: 1.4206,
     category: "travel",
-    description:
-      "Nature-focused travel away from nightlife.",
+    translationKey: "ibiza",
   },
 
   {
@@ -213,8 +204,7 @@ const places: Place[] = [
     lat: 31.7917,
     lng: -7.0926,
     category: "travel",
-    description:
-      "Multi-city travel across Morocco.",
+    translationKey: "morocco",
   },
 
   {
@@ -222,7 +212,7 @@ const places: Place[] = [
     lat: -6.369,
     lng: 34.8888,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "tanzania",
   },
 
   {
@@ -230,7 +220,7 @@ const places: Place[] = [
     lat: 14.4974,
     lng: -14.4524,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "senegal",
   },
 
   {
@@ -238,7 +228,7 @@ const places: Place[] = [
     lat: 26.8206,
     lng: 30.8025,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "egypt",
   },
 
   {
@@ -246,7 +236,7 @@ const places: Place[] = [
     lat: 25.2854,
     lng: 51.531,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "doha",
   },
 
   {
@@ -254,7 +244,7 @@ const places: Place[] = [
     lat: 39.9042,
     lng: 116.4074,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "beijing",
   },
 
   {
@@ -262,7 +252,7 @@ const places: Place[] = [
     lat: 15.87,
     lng: 100.9925,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "thailand",
   },
 
   {
@@ -270,7 +260,7 @@ const places: Place[] = [
     lat: 19.8563,
     lng: 102.4955,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "laos",
   },
 
   {
@@ -278,7 +268,7 @@ const places: Place[] = [
     lat: 21.9162,
     lng: 95.956,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "myanmar",
   },
 
   {
@@ -286,7 +276,7 @@ const places: Place[] = [
     lat: -8.3405,
     lng: 115.092,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "bali",
   },
 
   {
@@ -294,7 +284,7 @@ const places: Place[] = [
     lat: 3.139,
     lng: 101.6869,
     category: "travel",
-    description: "Travel experience.",
+    translationKey: "kualaLumpur",
   },
 
   {
@@ -302,7 +292,7 @@ const places: Place[] = [
     lat: -24.866,
     lng: 152.348,
     category: "travel",
-    description: "Domestic travel.",
+    translationKey: "bundaberg",
   },
 
   {
@@ -310,7 +300,7 @@ const places: Place[] = [
     lat: -41.121,
     lng: 146.072,
     category: "travel",
-    description: "Domestic travel.",
+    translationKey: "penguin",
   },
 
   {
@@ -318,15 +308,15 @@ const places: Place[] = [
     lat: -29.462,
     lng: 149.84,
     category: "travel",
-    description:
-      "Outback travel experience.",
+    translationKey: "moree",
   },
 ];
 
-export default function TravelMap() {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<any>(null);
+  const markersRef = useRef<any[]>([]);
 
+  // Initialize map only once
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
@@ -400,7 +390,10 @@ export default function TravelMap() {
             if (place.timeline) {
               popupContent += `<em style="color: #666;">${place.timeline}</em>`;
             }
-            popupContent += `<br/><span>${place.description}</span>`;
+            const description = place.translationKey 
+              ? t(`travelMap.${place.translationKey}`)
+              : place.description;
+            popupContent += `<br/><span>${description}</span>`;
           }
         });
         
@@ -412,6 +405,7 @@ export default function TravelMap() {
         
         const marker = Leaflet.marker([lat, lng], { icon }).addTo(map);
         marker.bindPopup(popupContent);
+        markersRef.current.push({ marker, locationPlaces });
       });
     };
 
@@ -421,9 +415,40 @@ export default function TravelMap() {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
+        markersRef.current = [];
       }
     };
-  }, []);
+  }, []); // Initialize only once
+
+  // Update popup content when language changes
+  useEffect(() => {
+    if (!mapInstanceRef.current || markersRef.current.length === 0) return;
+
+    markersRef.current.forEach(({ marker, locationPlaces }) => {
+      const firstPlace = locationPlaces[0];
+      
+      // Build popup content with all items for this location
+      let popupContent = `<div style="font-size: 12px; max-width: 280px;">`;
+      popupContent += `<strong>${firstPlace.name}</strong>`;
+      
+      locationPlaces.forEach((place) => {
+        if (place.category !== "travel") {
+          popupContent += `<br/><br/>`;
+          if (place.timeline) {
+            popupContent += `<em style="color: #666;">${place.timeline}</em>`;
+          }
+          const description = place.translationKey 
+            ? t(`travelMap.${place.translationKey}`)
+            : place.description;
+          popupContent += `<br/><span>${description}</span>`;
+        }
+      });
+      
+      popupContent += `</div>`;
+      
+      marker.setPopupContent(popupContent);
+    });
+  }, [t]);
 
   return (
     <div className="rounded-3xl border border-sky-100 bg-white/80 p-4 shadow-sm">
@@ -433,7 +458,7 @@ export default function TravelMap() {
         style={{ minHeight: '512px' }}
       />
       <p className="mt-3 text-xs text-slate-600">
-        Yellow markers indicate places I travelled to for discovery, while orange markers represent places where I lived.
+        {t("travel.mapNote")}
       </p>
     </div>
   );
