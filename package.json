@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "publish": "bash scripts/publish.sh"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
