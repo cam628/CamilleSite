@@ -314,7 +314,7 @@ export default function TravelMap() {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<any>(null);
-  const markersRef = useRef<any[]>([]);
+  const markersRef = useRef<{ marker: any; locationPlaces: Place[] }[]>([]);
 
   // Initialize map only once
   useEffect(() => {
