@@ -8,7 +8,7 @@ type Place = {
   name: string;
   lat: number;
   lng: number;
-  description: string;
+  description?: string;
   category: "travel" | "work" | "life experience" | "origin" | "study" | "life" | "project" | string;
   timeline?: string;
   link?: string;
